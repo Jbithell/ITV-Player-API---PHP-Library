@@ -25,13 +25,14 @@ class ITVapi extends API {
 		$obj = json_decode($jsondata, true);
 		$videos = array();
 		foreach ($obj["Result"][0]["Details"] as $items) {
-			$videos[] = new Show($items["Programme"]["Programme"]["Title"],
+			$videos[] = new Show($items["Programme"]["Programme"]["Id"],
+								$items["Programme"]["Programme"]["Title"],
 								$items["Programme"]["Programme"]["ShortSynopsis"],
 								$items["Programme"]["Programme"]["LongSynopsis"],
 								$items["Programme"]["ImageUri"],
-								"ITV",
 								"",
-								$items["Programme"]["Programme"]["Id"]);
+								"ITV"
+								);
 		}
 		return $videos;
 	}
