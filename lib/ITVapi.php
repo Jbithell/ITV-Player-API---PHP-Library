@@ -1,5 +1,5 @@
 <?php
-require_once 'API.php':
+require_once 'API.php';
 class ITVapi extends API {
 	
 	function initialize() {
@@ -24,12 +24,12 @@ class ITVapi extends API {
 		$videos = [];
 		foreach ($obj["Result"][0]["Details"] as $items) {
 			$videos[] = new Show($items["Programme"]["Programme"]["Id"],
-						$items["Programme"]["Programme"]["Title"],
-						$items["Programme"]["Programme"]["ShortSynopsis"],
-						$items["Programme"]["Programme"]["LongSynopsis"],
-						"ITV",
-						"",
-						"");
+								$items["Programme"]["Programme"]["Title"],
+								$items["Programme"]["Programme"]["ShortSynopsis"],
+								$items["Programme"]["Programme"]["LongSynopsis"],
+								"ITV",
+								"",
+								"");
 		}
 		return $videos;
 	}
