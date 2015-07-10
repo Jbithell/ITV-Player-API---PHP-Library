@@ -18,10 +18,12 @@ class ITVapi extends API {
 		
 	}
 	
-	function search ($q) {
-		$jsondata = file_get_contents("http://mercury.itv.com/api/json/dotcom/programme/searchatoz/" . urlencode($q));
+	function search($q) {
+		$url = "http://mercury.itv.com/api/json/dotcom/programme/searchatoz/" . rawurlencode($q);
+		$jsondata = file_get_contents($url);
+		echo $url;
 		$obj = json_decode($jsondata, true);
-		$videos = [];
+		$videos = array();
 		foreach ($obj["Result"][0]["Details"] as $items) {
 			$videos[] = new Show($items["Programme"]["Programme"]["Id"],
 								$items["Programme"]["Programme"]["Title"],
@@ -35,5 +37,5 @@ class ITVapi extends API {
 	}
 }
 $YOUapi = new ITVapi ();
-var_dump($YOUapi -> search ("Coronation Street"));
+print_r($YOUapi -> search("Coronation Street"));
 ?>
